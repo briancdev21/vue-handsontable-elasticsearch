@@ -19,52 +19,43 @@ export const TableItemsConfig = [
   },
   // Name Field: mutable
   {
-    columnName: 'Name',
-    data: Fields.name,
+    columnName: 'User',
+    data: Fields.user,
     type: 'text',
     editor: 'text',
     colWidth: 150
   },
   // Alt Names Field: mutable
   {
-    columnName: 'Alt Names',
-    data: Fields.alt_names,
+    columnName: 'Date Created',
+    data: Fields.date_created,
     type: 'text',
     editor: 'text',
-    colWidth: 400
+    colWidth: 150
   },
   // Latitude Field: mutable
   {
-    columnName: 'Latitude',
-    data: Fields.latitude,
+    columnName: 'Title',
+    data: Fields.title,
     type: 'text',
     editor: 'text',
     colWidth: 150
   },
   // Longitude Field: mutable
   {
-    columnName: 'Longitude',
-    data: Fields.longitude,
+    columnName: 'Text',
+    data: Fields.text,
     type: 'text',
     editor: 'text',
-    colWidth: 150
-  },
-  // Country Code Field: mutable
-  {
-    columnName: 'Country',
-    data: Fields.country_code,
-    type: 'dropdown',
-    editor: 'select',
-    selectOptions: ['ac', 'ad', 'af', 'au', 'ben'],
-    colWidth: 150
+    colWidth: 400
   },
   // Population Field: mutable
   {
-    columnName: 'Population',
-    data: Fields.population,
+    columnName: 'Categories',
+    data: Fields.categories,
     type: 'text',
     editor: 'text',
-    colWidth: 150
+    colWidth: 200
   }
 ]
 

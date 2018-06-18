@@ -36,7 +36,7 @@
   import Vuetify from 'vuetify'
   import axios from 'axios'
   import VueAxios from 'vue-axios'
-  import { HomeUrl, Fields } from './config'
+  import { HomeUrl, HomeUrlNoInex, Fields } from './config'
   import { HandsontableSettings, TableItemsConfig } from './handsontableSetting'
   import VueMaterial from 'vue-material'
   import 'vue-material/dist/vue-material.min.css'
@@ -81,6 +81,7 @@
           obj.id = this.$refs.hottable.table.getDataAtCell(change[0], 0)
           obj.prop = change[1]
           obj.value = change[3]
+          console.log('obj,:', obj, change);
           this.changedElments.push(obj)
         })
       },
@@ -88,14 +89,16 @@
         const data = this.changedElments
         if (data.length === 0) return
         const api = HomeUrl // http://13.211.42.88:9200/web/web
+        const apiNoIndex = HomeUrlNoInex;
         let responseCount = data.length
         this.saving = true
         const comp = this
         data.forEach( (element, index) => {
           const property = element.prop
           const obj =  {};
-          obj[property] = element.value
-          axios.post(`${api}/${element.id}/_update`, {
+          obj[property] = element.value;
+          const data = this.hotSettings.data.filter(item => element.id === item.id).pop();
+          axios.post(`${apiNoIndex}/${data.index}/${data.type}/${data.id}/_update`, {
             "doc": obj
           })
           .then(function (response) {
@@ -164,9 +167,12 @@
             }
             data.push(Object.assign(item, {
               id: element._id,
-              no: origin+index+1
+              no: origin+index+1,
+              index: element._index,
+              type: element._type
             }))
           });
+          console.log('hot settings:', data);
           this.hotSettings.data = data;
         })
         .catch(e => {

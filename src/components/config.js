@@ -1,15 +1,15 @@
-const ElasticSearchIndex = 'web'
-const ElasticSearchMapping = 'web'
+const ElasticSearchIndex = 'saveddoc,savedsearch'
+// const ElasticSearchMapping = 'web'
+export const HomeUrlNoInex = `https://19d7d779f8a502497d7eed2a5d035771.ap-southeast-2.aws.found.io:9243`
 
-export const HomeUrl = `http://13.211.42.88:9200/${ElasticSearchIndex}/${ElasticSearchMapping}`
+export const HomeUrl = `https://19d7d779f8a502497d7eed2a5d035771.ap-southeast-2.aws.found.io:9243/${ElasticSearchIndex}`
 
 // A List of Params in an Item from ElasticSearch
 
 export const Fields = {
-  name: 'name',
-  alt_names: 'alt_names',
-  latitude: 'latitude',
-  longitude: 'longitude',
-  country_code: 'country_code',
-  population: 'population'
+  categories: 'categories',
+  title: 'title',
+  user: 'user',
+  date_created: 'date_created',
+  text: 'text'
 }
