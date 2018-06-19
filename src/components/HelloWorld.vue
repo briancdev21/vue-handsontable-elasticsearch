@@ -125,15 +125,24 @@
        
         const search_fields = []
         TableItemsConfig.forEach(item => {
-          search_fields.push(item.data)
+          if (item.data !== 'date_created') {
+            search_fields.push(item.data)
+          }
         })
         let search_query = ''
         if (this.searchQuery) {
+          // search_query = {
+          //   'multi_match' : {
+          //     'query':      `.*${this.searchQuery.toLowerCase()}.*`,
+          //     'type':       'best_fields',
+          //     'fields':     search_fields,
+          //     "operator":   "and"
+          //   }
+          // }
           search_query = {
-            'multi_match' : {
-              'query':      this.searchQuery,
-              'type':       'best_fields',
-              'fields':     search_fields
+            "query_string": {
+                "query": `*${this.searchQuery.toLowerCase()}*`,
+                "fields": search_fields
             }
           }
         } else {
